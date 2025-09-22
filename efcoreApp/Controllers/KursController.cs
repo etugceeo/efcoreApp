@@ -35,12 +35,17 @@ namespace efcoreApp.Controllers
             {
                 return NotFound();
             }
-            var ogr = await _context.Kurslar.FindAsync(id);
-            if (ogr == null)
+            //var ogr = await _context.Kurslar.FindAsync(id);
+            var kurs = await _context
+            .Kurslar
+            .Include(k => k.KursKayitlari)
+            .ThenInclude(k => k.Ogrenci)
+            .FirstOrDefaultAsync(k => k.KursId == id);
+            if (kurs == null)
             {
                 return NotFound();
             }
-            return View(ogr);
+            return View(kurs);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

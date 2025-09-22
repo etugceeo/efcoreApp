@@ -39,7 +39,11 @@ namespace efcoreApp.Controllers
                 return NotFound();//404
             }
             // var ogr = await _context.Ogrenciler.FindAsync(id);
-            var ogr = await _context.Ogrenciler.FirstOrDefaultAsync(ogrenci => ogrenci.OgrenciId == id);
+            var ogr = await _context
+            .Ogrenciler
+            .Include(o => o.KursKayitlari)
+            .ThenInclude(o=>o.Kurs)
+            .FirstOrDefaultAsync(ogrenci => ogrenci.OgrenciId == id);
             if (ogr == null)
             {
                 return NotFound();
@@ -49,7 +53,7 @@ namespace efcoreApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]//crossside attack önlemek için
-        public async Task<IActionResult> edit(int id, Ogrenci model)
+        public async Task<IActionResult> Edit(int id, Ogrenci model)
         {
             if (id != model.OgrenciId)
             {

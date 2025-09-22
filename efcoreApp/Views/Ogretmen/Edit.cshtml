@@ -1,18 +1,18 @@
 @using efcoreApp.Data
-@model Ogrenci
-<h2>Öğrenci Güncelle</h2>
+@model Ogretmen
+<h2>Öğretmen Güncelle</h2>
 <hr>
 <div class="row">
     <div class="col-8">
-        <form asp-asp-controller="Ogrenci" asp-action="Edit" method="post">
-            <input type="hidden" asp-for="OgrenciId">
+        <form asp-asp-controller="Ogretmen" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="OgretmenId">
             <div class="mb-3">
-                <label asp-for="OgrenciAd" class="form-label">Öğrenci Ad</label>
-                <input asp-for="OgrenciAd" class="form-control">
+                <label asp-for="Ad" class="form-label">Öğrenci Ad</label>
+                <input asp-for="Ad" class="form-control">
             </div>
             <div class="mb-3">
-                <label asp-for="OgrenciSoyad" class="form-label">Öğrenci Soyad</label>
-                <input asp-for="OgrenciSoyad" class="form-control">
+                <label asp-for="SoyAd" class="form-label">Öğrenci Soyad</label>
+                <input asp-for="SoyAd" class="form-control">
             </div>
             <div class="mb-3">
                 <label asp-for="Eposta" class="form-label">Eposta</label>
@@ -22,6 +22,10 @@
                 <label asp-for="Telefon" class="form-label">Telefon</label>
                 <input asp-for="Telefon" class="form-control">
             </div>
+            <div class="mb-3">
+                <label asp-for="BaslamaTarihi" class="form-label">Başlama tarihi</label>
+                <input asp-for="BaslamaTarihi" class="form-control">
+            </div>
             <button type="submit" class="btn btn-secondary">Kaydet</button>
         </form>
     </div>
@@ -29,9 +33,9 @@
     <h4>Kurslar</h4>
     <hr>
     <ul>
-    @foreach(var item in @Model.KursKayitlari)
+    @foreach(var item in @Model.Kurslar)
     {
-        <li>@item.Kurs.Baslik</li>
+        <li>@item.Baslik</li>
     }
     </ul>
     </div>
