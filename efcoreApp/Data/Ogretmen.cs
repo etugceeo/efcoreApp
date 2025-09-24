@@ -8,6 +8,11 @@ namespace efcoreApp.Data
         public int OgretmenId { get; set; }
         public string? Ad { get; set; }
         public string? SoyAd { get; set; }
+        public string? AdSoyad {get
+            {
+                return this.Ad + " " + this.SoyAd;
+            }
+        }
         public string? Eposta { get; set; }
         public string? Telefon { get; set; }
         [DataType(DataType.Date)]
